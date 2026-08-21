@@ -1,0 +1,1 @@
+"""Gateway MCP client package."""

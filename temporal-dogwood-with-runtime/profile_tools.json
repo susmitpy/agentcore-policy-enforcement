@@ -1,0 +1,8 @@
+[
+  {
+    "name": "get_client_profile",
+    "description": "Return a simulated client profile and its authoritative destination account.",
+    "inputSchema": {"type": "object", "properties": {"profile_id": {"type": "string"}}, "required": ["profile_id"], "additionalProperties": false},
+    "outputSchema": {"type": "object", "properties": {"profile_id": {"type": "string"}, "account_number": {"type": "string"}, "name": {"type": "string"}}, "required": ["profile_id", "account_number", "name"]}
+  }
+]

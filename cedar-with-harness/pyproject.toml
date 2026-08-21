@@ -1,0 +1,10 @@
+[project]
+name = "agentcore-payment-harness"
+version = "0.1.0"
+description = "Simulated AWS AgentCore payment-harness demo"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "boto3>=1.43.73",
+    "python-dotenv>=1.2.3",
+]

@@ -1,0 +1,17 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "InvokeOnlyThisHarness",
+      "Effect": "Allow",
+      "Action": ["bedrock-agentcore:InvokeHarness", "bedrock-agentcore:InvokeAgentRuntime"],
+      "Resource": "REPLACE_WITH_HARNESS_ARN"
+    },
+    {
+      "Sid": "ExplicitlyDenyDirectGatewayUse",
+      "Effect": "Deny",
+      "Action": "bedrock-agentcore:InvokeGateway",
+      "Resource": "*"
+    }
+  ]
+}

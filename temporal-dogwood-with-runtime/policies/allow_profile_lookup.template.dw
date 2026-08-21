@@ -1,0 +1,10 @@
+// AgentCore accepts exactly one statement per Policy resource.
+// This prerequisite permit is restricted to the Runtime's Cedar IAM entity.
+// AgentCore normalizes a SigV4 assumed-role caller by removing its session name.
+// It ensures a completed profile call is recorded for TransferAmountLimit
+// without making lookup permissive.
+permit (
+  principal == AgentCore::IamEntity::"{{LOOKUP_PRINCIPAL}}",
+  action == AgentCore::Action::"BankProfile___get_client_profile",
+  resource == AgentCore::Gateway::"{{BANK_GATEWAY_ARN}}"
+);

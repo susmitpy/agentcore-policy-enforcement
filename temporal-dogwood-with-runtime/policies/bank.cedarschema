@@ -1,0 +1,43 @@
+namespace AgentCore {
+  type GetClientProfileInput = {
+    profile_id: String
+  };
+
+  type GetClientProfileOutput = {
+    profile_id: String,
+    account_number: String,
+    name: String
+  };
+
+  type TransferFundsInput = {
+    profile_id: String,
+    to_account: String,
+    amount: Long
+  };
+
+  type TransferFundsOutput = {
+    transfer_id: String,
+    status: String
+  };
+
+  entity Gateway;
+  entity IamEntity = { id: String };
+
+  action "BankProfile___get_client_profile" appliesTo {
+    principal: [IamEntity],
+    resource: [Gateway],
+    context: {
+      input: GetClientProfileInput,
+      output?: GetClientProfileOutput
+    }
+  };
+
+  action "BankTransfer___transfer_funds" appliesTo {
+    principal: [IamEntity],
+    resource: [Gateway],
+    context: {
+      input: TransferFundsInput,
+      output?: TransferFundsOutput
+    }
+  };
+}

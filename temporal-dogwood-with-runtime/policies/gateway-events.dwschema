@@ -1,0 +1,28 @@
+// Responses are history-only. Requests are authorization decision points.
+// The universal callerPrincipal pin isolates temporal history by caller.
+max_window = 8h
+
+decision event <A>::request {
+    ...inputs(A),
+    pin callerPrincipal: principalType(A) = principal,
+    eventResource: resourceType(A),
+    requestId: String,
+    sessionId: String,
+}
+
+event <A>::response {
+    ...inputs(A),
+    ...outputs(A),
+    pin callerPrincipal: principalType(A) = principal,
+    eventResource: resourceType(A),
+    requestId: String,
+    sessionId: String,
+}
+
+event <A>::error {
+    ...inputs(A),
+    pin callerPrincipal: principalType(A) = principal,
+    eventResource: resourceType(A),
+    requestId: String,
+    sessionId: String,
+}

@@ -1,0 +1,28 @@
+[
+  {
+    "name": "transfer_funds",
+    "description": "Create a simulated transfer after AgentCore Gateway policy has approved it.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "profile_id": {
+          "type": "string"
+        },
+        "to_account": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "profile_id",
+        "to_account",
+        "amount"
+      ],
+      "additionalProperties": false
+    },
+    "outputSchema": {"type": "object", "properties": {"transfer_id": {"type": "string"}, "status": {"type": "string"}}, "required": ["transfer_id", "status"]}
+  }
+]

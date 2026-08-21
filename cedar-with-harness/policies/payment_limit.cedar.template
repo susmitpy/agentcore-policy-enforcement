@@ -1,0 +1,10 @@
+// {{GATEWAY_ARN}} is resolved by scripts/deploy.sh after the first AgentCore deploy.
+// ENFORCE uses default-deny semantics: this single permit is the entire allow surface.
+permit(
+  principal,
+  action == AgentCore::Action::"PaymentTools___make_payment",
+  resource == AgentCore::Gateway::"{{GATEWAY_ARN}}"
+)
+when {
+  context.input.amount <= 1000
+};

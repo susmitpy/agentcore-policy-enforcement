@@ -1,0 +1,26 @@
+// AgentCore accepts exactly one statement per Policy resource.
+// Permit this Runtime role to transfer only when its account was returned by a
+// recent profile lookup and it remains within this profile's eight-hour
+// 5,000-unit budget.
+// `request` includes the request currently being authorized, so concurrent
+// in-flight calls cannot bypass the cap.
+permit (
+  principal == AgentCore::IamEntity::"{{LOOKUP_PRINCIPAL}}",
+  action == AgentCore::Action::"BankTransfer___transfer_funds",
+  resource == AgentCore::Gateway::"{{BANK_GATEWAY_ARN}}"
+) when temporal {
+  formerly within 15m AgentCore::Action::"BankProfile___get_client_profile"::response{
+    output.account_number: context.input.to_account,
+    output.profile_id:     context.input.profile_id,
+    eventResource:         resource
+  }
+  && sum_within(
+       amount,
+       8h,
+       AgentCore::Action::"BankTransfer___transfer_funds"::request{
+         input.profile_id:   context.input.profile_id,
+         input.amount: amount,
+         eventResource:      resource
+       }
+     ) <= 5000
+};

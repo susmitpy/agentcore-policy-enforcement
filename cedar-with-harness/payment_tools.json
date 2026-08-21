@@ -1,0 +1,32 @@
+[
+  {
+    "name": "make_payment",
+    "description": "Create a simulated payment for an approved business purpose. This never transfers money.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "purpose": {
+          "type": "string",
+          "description": "One of: rent, utilities, payroll, vendor_invoice."
+        },
+        "amount": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Simulated whole-INR amount. Use an integer such as 250."
+        }
+      },
+      "required": ["purpose", "amount"]
+    },
+    "outputSchema": {
+      "type": "object",
+      "properties": {
+        "status": {"type": "string"},
+        "transaction_id": {"type": "string"},
+        "approved_account_id": {"type": "string"},
+        "amount": {"type": "number"},
+        "timestamp": {"type": "string"}
+      },
+      "required": ["status", "transaction_id", "approved_account_id", "amount", "timestamp"]
+    }
+  }
+]

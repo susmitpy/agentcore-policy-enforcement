@@ -1,0 +1,34 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Simulated profile and transfer Lambda targets for the AgentCore temporal-policy demo.
+
+Resources:
+  ProfileFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-profile'
+      CodeUri: lambda/
+      Handler: profile.lambda_handler
+      Runtime: python3.12
+      Timeout: 10
+      MemorySize: 128
+      Policies:
+        - AWSLambdaBasicExecutionRole
+
+  TransferFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-transfer'
+      CodeUri: lambda/
+      Handler: transfer.lambda_handler
+      Runtime: python3.12
+      Timeout: 10
+      MemorySize: 128
+      Policies:
+        - AWSLambdaBasicExecutionRole
+
+Outputs:
+  ProfileFunctionArn:
+    Value: !GetAtt ProfileFunction.Arn
+  TransferFunctionArn:
+    Value: !GetAtt TransferFunction.Arn

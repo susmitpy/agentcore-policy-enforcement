@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Simulated payment Lambda used only by the AgentCore payment Gateway.
+
+Resources:
+  PaymentFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-payment'
+      CodeUri: lambda/
+      Handler: payment.lambda_handler
+      Runtime: python3.12
+      Timeout: 10
+      MemorySize: 128
+      Policies:
+        - AWSLambdaBasicExecutionRole
+
+Outputs:
+  PaymentFunctionArn:
+    Value: !GetAtt PaymentFunction.Arn
