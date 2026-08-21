@@ -135,6 +135,7 @@ import json, os
 r = json.loads(os.environ["STATUS"])["deployedState"]["targets"]["default"]["resources"]
 g = r.get("mcp", {}).get("gateways", r.get("gateways", {}))["BankGateway"]
 print("RARN=" + repr(r["runtimes"]["TemporalPolicyAgent"]["runtimeArn"]))
+print("BARN=" + repr(g["gatewayArn"]))
 print("BURL=" + repr(g["gatewayUrl"]))
 ')"
-printf 'AWS_REGION=%s\nTEMPORAL_RUNTIME_ARN=%s\nBANK_GATEWAY_URL=%s\n' "$region" "$RARN" "$BURL" > "$work_dir/deployment.env"
+printf 'AWS_REGION=%s\nTEMPORAL_RUNTIME_ARN=%s\nBANK_GATEWAY_ARN=%s\nBANK_GATEWAY_URL=%s\n' "$region" "$RARN" "$BARN" "$BURL" > "$work_dir/deployment.env"

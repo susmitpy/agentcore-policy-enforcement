@@ -1,0 +1,20 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "InvokeOnlyThisTemporalRuntime",
+      "Effect": "Allow",
+      "Action": "bedrock-agentcore:InvokeAgentRuntime",
+      "Resource": [
+        "REPLACE_WITH_TEMPORAL_RUNTIME_ARN",
+        "REPLACE_WITH_TEMPORAL_RUNTIME_ENDPOINT_ARN"
+      ]
+    },
+    {
+      "Sid": "InvokeOnlyThisBankGateway",
+      "Effect": "Allow",
+      "Action": "bedrock-agentcore:InvokeGateway",
+      "Resource": "REPLACE_WITH_BANK_GATEWAY_ARN"
+    }
+  ]
+}

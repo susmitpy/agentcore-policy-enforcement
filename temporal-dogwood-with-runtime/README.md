@@ -124,6 +124,32 @@ The script performs these stages:
 
 Generated deployment values are written to `.agentcore-work/deployment.env`; do not commit that file.
 
+## IAM Configuration for Invokers
+
+Create a caller-specific IAM policy from
+`iam/caller-runtime-and-gateway.json`, then replace its placeholders using the
+deployment output:
+
+```bash
+source .agentcore-work/deployment.env
+
+# Replace these values in the copied policy document:
+# REPLACE_WITH_TEMPORAL_RUNTIME_ARN          = $TEMPORAL_RUNTIME_ARN
+# REPLACE_WITH_TEMPORAL_RUNTIME_ENDPOINT_ARN = $TEMPORAL_RUNTIME_ARN/runtime-endpoint/DEFAULT
+# REPLACE_WITH_BANK_GATEWAY_ARN              = $BANK_GATEWAY_ARN
+```
+
+Attach the resulting policy to the IAM user or role that runs
+`scripts/demo.py`. It grants only `bedrock-agentcore:InvokeAgentRuntime` on
+this Runtime (including its `DEFAULT` endpoint) and
+`bedrock-agentcore:InvokeGateway` on this BankGateway. Runtime and Gateway
+IDs are generated on deployment, so do not copy ARNs from another deployment;
+use the values in that deployment's `.agentcore-work/deployment.env`.
+
+Keep the deployment/admin principal separate from invoker principals. It needs
+broader permissions to create and update AgentCore, Lambda, CloudFormation,
+and IAM resources.
+
 ## Verify / Invoke
 
 ### Verify the Gateway Tools
