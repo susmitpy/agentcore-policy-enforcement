@@ -4,8 +4,8 @@ This repository contains two self-contained AgentCore authorization and architec
 
 ## Demos Summary
 
-*   **[Basic Payment Demo (Cedar with Harness)](cedar-with-harness/README.md)**: Demonstrates a straightforward, managed `Harness` integration with a single Gateway tool and static, stateless Cedar policy enforcement (e.g., amount limits).
-*   **[Temporal Policy Demo (Dogwood with Runtime)](temporal-dogwood-with-runtime/README.md)**: Demonstrates advanced, stateful authorization using a standalone AgentCore Runtime and Dogwood temporal policies to enforce operation order and dependencies across multiple agent tool calls (e.g., a transfer requires a recent profile lookup).
+*   **[Basic Payment Demo (Cedar with Harness)](cedar-with-harness/README.md)**: Demonstrates a straightforward, managed `Harness` integration with a single Gateway tool and static, stateless Cedar policy enforcement (e.g., amount limits). Demo Video - [Watch Here](https://youtu.be/zBZM8a5QW4E)
+*   **[Temporal Policy Demo (Dogwood with Runtime)](temporal-dogwood-with-runtime/README.md)**: Demonstrates advanced, stateful authorization using a standalone AgentCore Runtime and Dogwood temporal policies to enforce operation order and dependencies across multiple agent tool calls (e.g., a transfer requires a recent profile lookup). Demo Video - [Watch Here](https://youtu.be/pZC0gTDv5SE)
 
 ---
 
